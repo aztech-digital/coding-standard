@@ -68,10 +68,10 @@ class ReturnFormattingSniff implements \PHP_CodeSniffer_Sniff
 
         $newLineCount = 0;
 
-        foreach ($it as $token) {
+        foreach ($it as $ptr => $token) {
             if (! in_array($token['code'], $this->allowedTypes)) {
                 $error = 'Return statement should be the last statement in scope';
-                $phpcsFile->addError($error, $it, 'NotLastInScope');
+                $phpcsFile->addError($error, $ptr, 'NotLastInScope');
 
                 break;
             }

@@ -2,6 +2,7 @@
 <ruleset name="Aztech">
   <description>Aztech Digital PHP coding standard</description>
     <rule ref="Aztech.Commenting.FunctionComment" />
+    <rule ref="Aztech.Formatting.NoConsecutiveBlankLines" />
     <rule ref="Aztech.Formatting.ReturnFormatting" />
     <rule ref="Generic.Classes.DuplicateClassName" />
     <rule ref="Generic.CodeAnalysis.EmptyStatement" />
