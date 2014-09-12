@@ -1,0 +1,32 @@
+{
+    "name": "aztech/coding-standard",
+    "description": "Aztech Sniffs for PHP CodeSniffer",
+    "license": "MIT",
+    "keywords": [
+        "aztech",
+        "aztech-digital"
+    ],
+    "type": "library",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Aztech\\Sniffs\\": "src/Aztech/Sniffs"
+        }
+    },
+    "require": {
+        "php": ">= 5.4",
+        "aztech/php-utils": "~0",
+        "psr/log": "~1.0",
+        "squizlabs/php_codesniffer": "@stable"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.2",
+        "vektah/bugfree-dangerzone": "~0.2",
+        "phpmd/phpmd": "~2"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1.x-dev"
+        }
+    }
+}
