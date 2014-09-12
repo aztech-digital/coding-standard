@@ -28,8 +28,8 @@ class FunctionCommentSniff implements \PHP_CodeSniffer_Sniff
         $startCommentPtr = $phpcsFile->findNext([ T_DOC_COMMENT ], $previousPtr, $stackPtr);
 
         if (! $startCommentPtr) {
-            $error = sprintf('There must a DocBlock comment for the function', $phpcsFile->getDeclarationName($stackPtr));
-            $phpcsFile->addError($error, $stackPtr, 'NoDocBlock');
+            $error = sprintf('Missing function doc comment', $phpcsFile->getDeclarationName($stackPtr));
+            $phpcsFile->addError($error, $stackPtr, 'MissingDocBlock');
 
             return;
         }
