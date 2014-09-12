@@ -4,6 +4,7 @@
     <rule ref="Aztech.Commenting.FunctionComment" />
     <rule ref="Aztech.Formatting.NoConsecutiveBlankLines" />
     <rule ref="Aztech.Formatting.ReturnFormatting" />
+    <rule ref="Aztech.Formatting.ScopeFormatting" />
     <rule ref="Generic.Classes.DuplicateClassName" />
     <rule ref="Generic.CodeAnalysis.EmptyStatement" />
     <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop" />

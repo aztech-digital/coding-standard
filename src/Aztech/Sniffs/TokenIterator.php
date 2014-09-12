@@ -8,4 +8,11 @@ class TokenIterator extends StandardIterator
     {
         parent::__construct(array_slice($tokens, $start, $stop - $start, true));
     }
+
+    public function reverse()
+    {
+        $items = array_reverse($this->items, true);
+
+        return new StandardIterator($items);
+    }
 }

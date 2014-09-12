@@ -17,7 +17,7 @@ class ReturnFormattingSniff implements \PHP_CodeSniffer_Sniff
 
     public function register()
     {
-        return array(T_RETURN);
+        return array(T_RETURN, T_BREAK, T_CONTINUE);
     }
 
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
@@ -43,16 +43,16 @@ class ReturnFormattingSniff implements \PHP_CodeSniffer_Sniff
         }
 
         if ($startToken['code'] == T_OPEN_CURLY_BRACKET && $newLineCount > 1) {
-            $error = 'Additional blank lines found before return statement';
+            $error = 'Additional blank lines found before this statement';
             $phpcsFile->addError($error, $stackPtr, 'ExtraBlankLines');
         }
         elseif ($startToken['code'] == T_SEMICOLON || $startToken['code'] == T_CLOSE_CURLY_BRACKET) {
             if ($newLineCount > 2) {
-                $error = 'Additional blank lines found before return statement';
+                $error = 'Additional blank lines found before this statement';
                 $phpcsFile->addError($error, $stackPtr, 'ExtraBlankLines');
             }
             elseif ($newLineCount < 2) {
-                $error = 'There must be exactly one blank line before this return statement.';
+                $error = 'There must be exactly one blank line before this statement.';
                 $phpcsFile->addError($error, $stackPtr, 'MissingBlankLines');
             }
         }
@@ -70,7 +70,7 @@ class ReturnFormattingSniff implements \PHP_CodeSniffer_Sniff
 
         foreach ($it as $ptr => $token) {
             if (! in_array($token['code'], $this->allowedTypes)) {
-                $error = 'Return statement should be the last statement in scope';
+                $error = 'Statement should be the last statement in scope';
                 $phpcsFile->addError($error, $ptr, 'NotLastInScope');
 
                 break;
@@ -82,7 +82,7 @@ class ReturnFormattingSniff implements \PHP_CodeSniffer_Sniff
         }
 
         if ($newLineCount > 1) {
-            $error = 'Additional blank lines found after return statement';
+            $error = 'Additional blank lines found after statement';
             $phpcsFile->addError($error, $stackPtr, 'ExtraBlankLines');
         }
     }
