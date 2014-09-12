@@ -32,10 +32,10 @@ endif
 
 ifeq "$(STRICT)" "1"
 phpcs: pretest
-	vendor/bin/phpcs --standard=phpcs.xml src
+	vendor/bin/phpcs --standard=src/Aztech/ruleset.xml src
 else
 phpcs: pretest
-	vendor/bin/phpcs --standard=phpcs.xml -n src
+	vendor/bin/phpcs --standard=src/Aztech/ruleset.xml -n src
 endif
 
 bugfree: pretest

@@ -17,8 +17,6 @@ class FunctionCommentSniff implements \PHP_CodeSniffer_Sniff
 
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $functionName = $phpcsFile->getDeclarationName($stackPtr);
-
         $types = [
             T_SEMICOLON,
             T_CLOSE_CURLY_BRACKET,
@@ -30,11 +28,13 @@ class FunctionCommentSniff implements \PHP_CodeSniffer_Sniff
         $startCommentPtr = $phpcsFile->findNext([ T_DOC_COMMENT ], $previousPtr, $stackPtr);
 
         if (! $startCommentPtr) {
-            $phpcsFile->addError($functionName . ' : missing function DocBlock', $stackPtr, 1, array(), 0);
+            $error = sprintf('There must a DocBlock comment for the function', $phpcsFile->getDeclarationName($stackPtr));
+            $phpcsFile->addError($error, $stackPtr, 'NoDocBlock');
+
             return;
         }
 
         $endCommentPtr = $phpcsFile->findNext(T_DOC_COMMENT, $startCommentPtr, $stackPtr, true);
-        $token = $phpcsFile->getTokensAsString($startCommentPtr - 1, $endCommentPtr - $startCommentPtr + 1);
+        $token = $phpcsFile->getTokens($startCommentPtr - 1, $endCommentPtr - $startCommentPtr + 1);
     }
 }
