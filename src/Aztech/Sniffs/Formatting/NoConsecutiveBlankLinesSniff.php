@@ -32,10 +32,12 @@ class NoConsecutiveBlankLinesSniff implements \PHP_CodeSniffer_Sniff
             $buffer .= str_replace(' ', '', $token['content']);
 
             if (strpos($buffer, PHP_EOL . PHP_EOL . PHP_EOL) !== false) {
-                $error = 'There should be no consecutive blank lines';
+                $error = 'There must be no consecutive blank lines';
                 $phpcsFile->addError($error, $ptr, 'ConsecutiveBlankLines');
 
-                $buffer = str_replace(PHP_EOL . PHP_EOL . PHP_EOL, PHP_EOL, $buffer);
+                while (strpos($buffer, PHP_EOL . PHP_EOL . PHP_EOL) !== false) {
+                    $buffer = str_replace(PHP_EOL . PHP_EOL . PHP_EOL, PHP_EOL . PHP_EOL, $buffer);
+                }
             }
         }
     }
