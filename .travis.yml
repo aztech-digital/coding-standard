@@ -1,0 +1,30 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - hhvm
+  - hhvm-nightly
+
+before_script:
+  - composer selfupdate
+  - PHP_CURRENT='5.6'
+  
+script:
+  - make test-analysis
+  - if [ $(phpenv version-name) = $PHP_CURRENT ]; then make test-upload; fi
+  - make clean
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: hhvm-nightly
+
+notifications:
+  webhooks:
+    urls:
+      - http://derricks.io/repositories/buildhook/
+    on_success: always
+    on_failure: always
+    on_start: true
